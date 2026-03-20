@@ -1,0 +1,157 @@
+<!-- LCA ENTERPRISE — LANDING PAGE -->
+
+<nav class="lca-navbar navbar navbar-expand-lg fixed-top">
+  <div class="container-xl">
+    <a class="navbar-brand lca-logo" href="#">
+      <span class="logo-bracket mono">[</span>
+      <span class="logo-text">LCA</span>
+      <span class="logo-enterprise">Enterprise</span>
+      <span class="logo-bracket mono">]</span>
+    </a>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link lca-nav-link" href="#features">Fonctionnalités</a></li>
+        <li class="nav-item"><a class="nav-link lca-nav-link" href="#pricing">Tarifs</a></li>
+        <li class="nav-item"><a class="nav-link lca-nav-link" href="#">Documentation</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3">
+        <button class="btn lca-btn-primary" (click)="navigateToDashboard()">Démarrer gratuitement</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="lca-hero">
+  <canvas id="codeCanvas" class="hero-canvas"></canvas>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-glow-left"></div>
+  <div class="container-xl hero-content">
+    <div class="row align-items-center min-vh-100 py-5">
+      <div class="col-lg-8">
+        <div class="hero-badge mono mb-4">
+          <span class="badge-dot"></span>
+          <span>Claude AI · Migration Java 8 → 21</span>
+        </div>
+        <h1 class="hero-headline">
+          L'IA qui migre votre code
+          <span class="headline-gradient">Java 8 vers Java 21</span>
+          en <span class="headline-accent">10 minutes</span>.
+        </h1>
+        <p class="hero-subline mt-4 mb-5">
+          Analysez, modernisez et validez automatiquement vos projets Maven
+          grâce à <span class="text-cyan mono">Claude AI</span>. Zéro configuration, résultats immédiats.
+        </p>
+        <div class="hero-ctas d-flex flex-wrap gap-3 mb-5">
+          <button class="btn lca-btn-primary lca-btn-lg" (click)="navigateToDashboard()">
+            Analyser mon pom.xml
+          </button>
+          <button class="btn lca-btn-ghost lca-btn-lg">Voir la démo</button>
+        </div>
+        <div class="hero-stats d-flex flex-wrap gap-4">
+          @for (stat of stats; track stat.label) {
+            <div class="hero-stat-item">
+              <div class="stat-value mono">{{ stat.value }}</div>
+              <div class="stat-label">{{ stat.label }}</div>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="col-lg-4 d-none d-lg-flex justify-content-center">
+        <div class="hero-terminal">
+          <div class="terminal-header">
+            <span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span>
+            <span class="terminal-title mono">lca-analyze.sh</span>
+          </div>
+          <div class="terminal-body mono">
+            <div class="t-line"><span class="t-prompt">$ </span>lca analyze pom.xml</div>
+            <div class="t-line t-cyan">→ Parsing dependencies...</div>
+            <div class="t-line t-dim">  Found 47 dependencies</div>
+            <div class="t-line t-cyan">→ Running AI analysis...</div>
+            <div class="t-line t-green">✓ 12 upgrades available</div>
+            <div class="t-line t-green">✓ Virtual Threads ready</div>
+            <div class="t-line t-green">✓ Done in <span class="t-accent">8m 42s</span></div>
+            <div class="t-line"><span class="t-prompt">$ </span><span class="cursor-blink">_</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lca-features section-pad" id="features">
+  <div class="container-xl">
+    <div class="section-header text-center mb-5">
+      <div class="section-tag mono mb-3">// FONCTIONNALITÉS</div>
+      <h2 class="section-title">Migration complète, du pom.xml au code Java 21 validé</h2>
+    </div>
+    <div class="row g-4">
+      @for (feature of features; track feature.title; let i = $index) {
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card" [class.feature-card--highlight]="i === 1">
+            <div class="feature-tag mono">{{ feature.tag }}</div>
+            <div class="feature-icon-wrap">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path [attr.d]="feature.icon"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">{{ feature.title }}</h3>
+            <p class="feature-desc">{{ feature.description }}</p>
+            <div class="feature-stat">
+              <span class="stat-num mono">{{ feature.stat }}</span>
+              <span class="stat-lbl">{{ feature.statLabel }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="lca-pricing section-pad" id="pricing">
+  <div class="container-xl">
+    <div class="section-header text-center mb-5">
+      <div class="section-tag mono mb-3">// TARIFS</div>
+      <h2 class="section-title">Simple, transparent, sans surprise</h2>
+    </div>
+    <div class="row g-4 justify-content-center">
+      @for (tier of pricingTiers; track tier.name) {
+        <div class="col-md-6 col-lg-4">
+          <div class="pricing-card d-flex flex-column" [class.pricing-card--highlight]="tier.highlight">
+            @if (tier.highlight) { <div class="pricing-badge mono">POPULAIRE</div> }
+            <div class="pricing-name">{{ tier.name }}</div>
+            <div class="pricing-price">
+              <span class="price-amount mono">{{ tier.price }}</span>
+              <span class="price-period">{{ tier.period }}</span>
+            </div>
+            <p class="pricing-desc">{{ tier.description }}</p>
+            <ul class="pricing-features">
+              @for (feat of tier.features; track feat) {
+                <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> {{ feat }}</li>
+              }
+            </ul>
+            <button class="btn w-100 mt-auto" [class]="tier.highlight ? 'lca-btn-primary' : 'lca-btn-outline'">
+              {{ tier.name === 'Enterprise' ? 'Nous contacter' : 'Commencer' }}
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<footer class="lca-footer">
+  <div class="container-xl">
+    <div class="row align-items-center py-4">
+      <div class="col-md-6">
+        <div class="footer-logo mono mb-1"><span class="text-cyan">[</span> LCA Enterprise <span class="text-cyan">]</span></div>
+        <p class="footer-copy">© 2026 LCA Enterprise. Propulsé par Claude AI.</p>
+      </div>
+      <div class="col-md-6 d-flex justify-content-md-end gap-4 mt-3 mt-md-0">
+        <a href="#" class="footer-link">Confidentialité</a>
+        <a href="#" class="footer-link">Conditions</a>
+        <a href="#" class="footer-link">Contact</a>
+        <a href="#" class="footer-link">API Docs</a>
+      </div>
+    </div>
+  </div>
+</footer>
